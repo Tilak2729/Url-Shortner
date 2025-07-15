@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>URL Shortener</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+  <!-- Theme Toggle Button -->
+  <button class="theme-toggle" id="theme-toggle" title="Toggle theme">
+    <i class="fas fa-moon"></i>
+    <i class="fas fa-sun"></i>
+  </button>
+
+  <div class="container">
+    <div class="header">
+      <h1>URL Shortener</h1>
+      <p>Shorten your long URLs into compact, shareable links</p>
+    </div>
+    
+    <div class="url-form">
+      <form id="shorten-form">
+        <div class="input-group">
+          <input type="url" id="long-url" placeholder="Enter your long URL here" required>
+          <select id="expiry-days">
+            <option value="1">1 Day</option>
+            <option value="7" selected>7 Days</option>
+            <option value="30">30 Days</option>
+            <option value="90">90 Days</option>
+          </select>
+          <button type="submit">Shorten</button>
+        </div>
+      </form>
+    </div>
+    
+    <div class="result-container" id="result-container">
+      <!-- Results will be displayed here -->
+    </div>
+    
+    <div class="history-container">
+      <h2>Recent URLs</h2>
+      <div id="url-history">
+        <!-- URL history will be displayed here -->
+      </div>
+    </div>
+  </div>
+  
+  <!-- Templates -->
+  <template id="result-template">
+    <div class="result-card">
+      <div class="result-header">
+        <h3>Your Shortened URL</h3>
+        <span class="expiry">Expires in <span class="expiry-days"></span></span>
+      </div>
+      <div class="result-body">
+        <div class="short-url-container">
+          <a href="#" class="short-url" target="_blank"></a>
+          <button class="copy-btn"><i class="fas fa-copy"></i></button>
+        </div>
+        <div class="long-url-preview">
+          <span class="original-url"></span>
+        </div>
+        <div class="qr-container">
+          <div class="qr-wrapper">
+            <div class="qr-loading">
+              <div class="qr-spinner"></div>
+            </div>
+            <img class="qr-code" src="" alt="QR Code">
+          </div>
+          <a href="#" class="download-qr">Download QR</a>
+        </div>
+      </div>
+    </div>
+  </template>
+  
+  <template id="history-item-template">
+    <div class="history-item">
+      <div class="history-item-left">
+        <a href="#" class="history-short-url" target="_blank"></a>
+        <span class="history-long-url"></span>
+      </div>
+      <div class="history-item-right">
+        <span class="history-clicks"><i class="fas fa-chart-simple"></i> <span class="clicks-count"></span></span>
+        <span class="history-date"></span>
+        <button class="delete-btn" title="Delete URL"><i class="fas fa-trash"></i></button>
+      </div>
+    </div>
+  </template>
+  
+  <!-- Alert Template -->
+  <div class="alert-container" id="alert-container">
+    <!-- Alerts will be displayed here -->
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
