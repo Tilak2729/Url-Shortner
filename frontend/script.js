@@ -19,7 +19,8 @@ let API_URL;
 if (window.location.hostname !== 'localhost' && 
     !window.location.hostname.startsWith('192.168.')) {
   // When deployed, use the Render backend URL
-  API_URL = 'https://url-shortner-r3s5.onrender.com';
+  API_URL = 'https://url-shortner-r3s5.onrender.com/api';
+
 } else {
   // For local development
   API_URL = 'http://192.168.29.52:5001/api';
