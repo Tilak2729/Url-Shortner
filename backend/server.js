@@ -10,7 +10,7 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.FRONTEND_URL], // Allow only the specified frontend origin
+  origin: process.env.FRONTEND_URL, // Allow only the specified frontend origin
   credentials: true
 }));
 
