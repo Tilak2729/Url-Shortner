@@ -5,12 +5,20 @@ const mongoose = require('mongoose');
 // @desc    Redirect to the long URL
 module.exports = async (req, res) => {
   try {
-    // Check MongoDB connection status
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(503).json({ 
-        error: 'Database not connected', 
-        message: 'MongoDB is not connected. This is a demo mode with limited functionality.'
-      });
+    // If MongoDB is not available, use mock database
+    if (global.useMockDb) {
+      global.mockDatabase = global.mockDatabase || [];
+      const mockUrl = global.mockDatabase.find(url => url.urlCode === req.params.code);
+      
+      if (mockUrl) {
+        // Increment click count
+        mockUrl.clicks++;
+        
+        // Redirect to the long URL
+        return res.redirect(mockUrl.longUrl);
+      } else {
+        return res.status(404).json({ error: 'URL not found' });
+      }
     }
     
     const url = await Url.findOne({ urlCode: req.params.code });

@@ -63,41 +63,30 @@ url-shortener/
 4. Start the development server: `npm run dev`
 5. Access the application at http://localhost:5001
 
-## Deployment Instructions
+## Running the Application Locally
 
-### Frontend Deployment (Vercel)
+### Backend Setup
 
-1. Create a Vercel account at https://vercel.com if you don't have one
-2. Install Vercel CLI: `npm i -g vercel`
-3. Navigate to the frontend directory: `cd frontend`
-4. Deploy to Vercel: `vercel`
-5. Follow the prompts to link your project to your Vercel account
-6. After deployment, note the URL provided by Vercel (e.g., `https://url-shortener-frontend-vercel.vercel.app`)
+1. Navigate to the backend directory: `cd backend`
+2. Install dependencies: `npm install`
+3. Make sure MongoDB is running locally
+4. Start the backend server: `npm start` or `node server.js`
+5. The backend will be available at http://localhost:5000
 
-### Backend Deployment (Render)
+### Frontend Setup
 
-1. Create a Render account at https://render.com if you don't have one
-2. Create a new Web Service on Render
-3. Connect your GitHub repository
-4. Configure the service:
-   - Name: `url-shortener-backend`
-   - Root Directory: `backend`
-   - Environment: `Node`
-   - Build Command: `npm install`
-   - Start Command: `node server.js`
-5. Add the following environment variables in Render:
-   - `MONGO_URI`: Your MongoDB connection string
-   - `PORT`: 10000 (Render will override this with its own PORT)
-   - `BASE_URL`: Your Render app URL (e.g., `https://url-shortener-backend.onrender.com`)
-   - `FRONTEND_URL`: Your Vercel frontend URL (e.g., `https://url-shortener-frontend-vercel.vercel.app`)
-6. Deploy the service
+1. Navigate to the frontend directory: `cd frontend`
+2. Install dependencies: `npm install`
+3. Start the frontend server: `npm start`
+4. The frontend will be available at http://localhost:3000 or the port specified by your local server
 
-### Update Frontend Configuration
+### Testing the Application
 
-After deploying the backend to Render, update the frontend's API_URL:
-
-1. In the frontend's `script.js`, replace `https://your-render-app-name.onrender.com/api` with your actual Render backend URL
-2. Redeploy the frontend: `vercel --prod`
+1. Open your browser and navigate to the frontend URL
+2. Enter a long URL in the input field
+3. Select an expiry period
+4. Click the "Shorten" button
+5. You should see the shortened URL and QR code
 
 ### Prerequisites
 

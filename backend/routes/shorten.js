@@ -21,12 +21,36 @@ router.post('/shorten', async (req, res) => {
   }
 
   try {
-    // Check MongoDB connection status
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(503).json({ 
-        error: 'Database not connected', 
-        message: 'MongoDB is not connected. This is a demo mode with limited functionality.'
-      });
+    // If MongoDB is not available, use mock database
+    if (global.useMockDb) {
+      // Generate URL code and other data
+      const urlCode = nanoid(6);
+      const shortUrl = `${process.env.BASE_URL}/${urlCode}`;
+      
+      // Generate QR code
+      const qrCode = await QRCode.toDataURL(shortUrl);
+      
+      // Calculate expiry date
+      const expiresAt = new Date();
+      expiresAt.setDate(expiresAt.getDate() + parseInt(expiryDays));
+      
+      // Create mock URL object
+      const mockUrl = {
+        _id: nanoid(24), // Generate a mock ID similar to MongoDB ObjectId
+        urlCode,
+        longUrl,
+        shortUrl,
+        qrCode,
+        clicks: 0,
+        createdAt: new Date(),
+        expiresAt
+      };
+      
+      // Add to mock database
+      global.mockDatabase = global.mockDatabase || [];
+      global.mockDatabase.push(mockUrl);
+      
+      return res.json(mockUrl);
     }
     
     // Check if URL already exists in database
@@ -68,9 +92,10 @@ router.post('/shorten', async (req, res) => {
 // @desc    Get all URLs
 router.get('/urls', async (req, res) => {
   try {
-    // Check MongoDB connection status
-    if (mongoose.connection.readyState !== 1) {
-      return res.status(200).json([]); // Return empty array in demo mode
+    // If MongoDB is not available, use mock database
+    if (global.useMockDb) {
+      global.mockDatabase = global.mockDatabase || [];
+      return res.json(global.mockDatabase.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)));
     }
     
     const urls = await Url.find().sort({ createdAt: -1 });
@@ -85,6 +110,18 @@ router.get('/urls', async (req, res) => {
 // @desc    Delete a URL by ID
 router.delete('/url/:id', async (req, res) => {
   try {
+    // If MongoDB is not available, use mock database
+    if (global.useMockDb) {
+      global.mockDatabase = global.mockDatabase || [];
+      const urlIndex = global.mockDatabase.findIndex(url => url._id === req.params.id || url.urlCode === req.params.id);
+      
+      if (urlIndex !== -1) {
+        global.mockDatabase.splice(urlIndex, 1);
+        return res.json({ success: true });
+      } else {
+        return res.status(404).json({ error: 'URL not found' });
+      }
+    }
     // Check MongoDB connection status
     if (mongoose.connection.readyState !== 1) {
       return res.status(503).json({ 

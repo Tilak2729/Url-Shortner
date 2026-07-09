@@ -10,18 +10,26 @@ const app = express();
 // Middleware
 app.use(express.json());
 app.use(cors({
-  origin: [process.env.FRONTEND_URL, 'https://url-shortener-frontend-vercel.vercel.app'], // Allow specific origins
+  origin: [process.env.FRONTEND_URL], // Allow only the specified frontend origin
   credentials: true
 }));
 
-// Connect to MongoDB
-console.log('Attempting to connect to MongoDB...');
+// Initialize mock database as fallback
+global.mockDatabase = [];
+global.useMockDb = false;
+
+// Connect to MongoDB Atlas
+console.log('Attempting to connect to MongoDB Atlas...');
 mongoose.connect(process.env.MONGO_URI)
-  .then(() => console.log('MongoDB Connected Successfully'))
+  .then(() => {
+    console.log('MongoDB Atlas Connected Successfully');
+    global.useMockDb = false;
+  })
   .catch(err => {
     console.error('MongoDB Connection Error:', err.message);
-    console.error('Please make sure MongoDB is running and the connection string is correct');
-    console.log('The application will continue to run, but database features will not work.');
+    console.error('Please make sure the MongoDB Atlas connection string is correct');
+    console.log('Using in-memory mock database instead. Data will not persist after server restart.');
+    global.useMockDb = true;
   });
 
 // Routes

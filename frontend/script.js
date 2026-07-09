@@ -16,13 +16,14 @@ const historyItemTemplate = document.getElementById('history-item-template');
 let API_URL;
 
 // For production deployment
-if (window.location.hostname !== 'localhost' && 
-    !window.location.hostname.startsWith('192.168.')) {
-  // When deployed, use the Render backend URL
+if (
+  window.location.hostname !== 'localhost' &&
+  !window.location.hostname.startsWith('192.168.')
+) {
+  // Render backend
   API_URL = 'https://url-shortner-r3s5.onrender.com/api';
-
 } else {
-  // For local development
+  // Local backend
   API_URL = 'http://192.168.29.52:5001/api';
 }
 
