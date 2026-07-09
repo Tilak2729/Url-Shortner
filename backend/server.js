@@ -9,10 +9,7 @@ const app = express();
 
 // Middleware
 app.use(express.json());
-app.use(cors({
-  origin: process.env.FRONTEND_URL, // Allow only the specified frontend origin
-  credentials: true
-}));
+app.use(cors());
 
 // Initialize mock database as fallback
 global.mockDatabase = [];
