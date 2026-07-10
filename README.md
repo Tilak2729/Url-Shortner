@@ -1,151 +1,333 @@
-# URL Shortener Application
+<div align="center">
 
-A modern URL shortener application with QR code generation and automatic URL expiry features. Built with Node.js, Express, MongoDB for the backend and HTML/CSS/JavaScript for the frontend.
+# 🚀 Shortify
 
-## Features
+### Modern Full-Stack URL Shortener with QR Code Generation & Click Analytics
 
-- **URL Shortening**: Convert long URLs into short, shareable links
-- **QR Code Generation**: Generate QR codes for shortened URLs
-- **URL Expiry**: URLs automatically expire after a set period (default: 7 days)
-- **Click Tracking**: Track the number of clicks on each shortened URL
-- **Responsive Design**: Works on desktop and mobile devices
-- **Animations**: Smooth animations using Anime.js
+Transform long URLs into compact, shareable links with QR code generation, expiration management, click tracking, and a beautiful responsive interface.
 
-## Tech Stack
+<br>
 
-### Backend
-- Node.js
-- Express.js
-- MongoDB
-- Mongoose
-- nanoid (for generating unique URL codes)
-- QRCode (for generating QR codes)
+[![Live Demo](https://img.shields.io/badge/Live-Demo-success?style=for-the-badge)](https://url-shortner-three-alpha.vercel.app/)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/Tilak2729/Url-Shortner)
+![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![Express.js](https://img.shields.io/badge/Express.js-000000?style=for-the-badge&logo=express&logoColor=white)
+![MongoDB](https://img.shields.io/badge/MongoDB-13AA52?style=for-the-badge&logo=mongodb&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
 
-### Frontend
+</div>
+
+---
+
+# 📖 Overview
+
+**Shortify** is a full-stack URL shortening platform that enables users to convert long URLs into compact, shareable links. Along with shortening URLs, the application automatically generates downloadable QR codes, tracks click analytics, supports URL expiration, and provides an intuitive history dashboard.
+
+The project is built using **Node.js**, **Express.js**, **MongoDB Atlas**, and **Vanilla JavaScript**, with deployment on **Render** and **Vercel**.
+
+---
+
+# 🌐 Live Demo
+
+### 🔗 Website
+
+https://url-shortner-three-alpha.vercel.app/
+
+### 💻 GitHub Repository
+
+https://github.com/Tilak2729/Url-Shortner
+
+---
+
+# ✨ Features
+
+- 🔗 Generate short URLs instantly
+- ⚡ NanoID-based unique URL generation
+- 📱 Automatic QR Code generation
+- ⬇ Download QR Code as image
+- 📊 Click analytics
+- 🕒 Configurable URL expiration
+- 📜 URL history dashboard
+- 🗑 Delete shortened URLs
+- 📋 One-click copy functionality
+- 🌙 Dark Mode
+- ☀ Light Mode
+- 📱 Responsive Design
+- ☁ MongoDB Atlas cloud database
+- 🚀 Fully deployed using Vercel & Render
+
+---
+
+# 📸 Screenshots
+
+## Home Page (Light Mode)
+
+<p align="center">
+<img src="assets/home-light.png" width="900">
+</p>
+
+---
+
+## Home Page (Dark Mode)
+
+<p align="center">
+<img src="assets/home-dark.png" width="900">
+</p>
+
+---
+
+## Generated Short URL & QR Code (Light Mode)
+
+<p align="center">
+<img src="assets/qr-light.png" width="900">
+</p>
+
+---
+
+## Generated Short URL & QR Code (Dark Mode)
+
+<p align="center">
+<img src="assets/qr-dark.png" width="900">
+</p>
+
+---
+
+# ⚙ Tech Stack
+
+## Frontend
+
 - HTML5
 - CSS3
-- JavaScript (Vanilla)
-- Anime.js (for animations)
-- Font Awesome (for icons)
+- Vanilla JavaScript
 
-## Project Structure
+## Backend
+
+- Node.js
+- Express.js
+
+## Database
+
+- MongoDB Atlas
+- Mongoose
+
+## Deployment
+
+- Vercel
+- Render
+
+## Libraries Used
+
+- NanoID
+- QRCode
+- Dotenv
+- CORS
+
+---
+
+# 🏗 Project Architecture
 
 ```
-url-shortener/
-├── backend/
-│   ├── server.js         # Main server file
-│   ├── models/Url.js     # MongoDB URL model
-│   └── routes/
-│       ├── shorten.js    # API routes for shortening URLs
-│       └── redirect.js   # Route for handling redirects
-├── frontend/
-│   ├── index.html        # Main HTML file
-│   ├── styles.css        # CSS styles
-│   └── script.js         # Frontend JavaScript
-├── .env                  # Environment variables
-├── package.json          # Project dependencies
-└── README.md             # Project documentation
+                User
+                  │
+                  ▼
+        Frontend (Vercel)
+                  │
+                  ▼
+          Express REST API
+                  │
+                  ▼
+          MongoDB Atlas Cloud
+                  │
+                  ▼
+        Short URL + QR Code
+                  │
+                  ▼
+             User Response
 ```
 
-## Setup and Installation
+---
 
-### Local Development
+# 📂 Folder Structure
 
-1. Clone the repository
-2. Install dependencies: `npm install`
-3. Create a `.env` file with the following variables:
-   ```
-   MONGO_URI=your_mongodb_connection_string
-   BASE_URL=http://localhost:5001
-   PORT=5001
-   FRONTEND_URL=http://localhost:3000
-   ```
-4. Start the development server: `npm run dev`
-5. Access the application at http://localhost:5001
+```
+Url-Shortner
+│
+├── backend
+│   ├── models
+│   ├── routes
+│   ├── public
+│   ├── server.js
+│   ├── package.json
+│   └── ...
+│
+├── frontend
+│   ├── index.html
+│   ├── styles.css
+│   ├── script.js
+│   └── ...
+│
+├── assets
+│   ├── home-light.png
+│   ├── home-dark.png
+│   ├── qr-light.png
+│   └── qr-dark.png
+│
+└── README.md
+```
 
-## Running the Application Locally
+---
 
-### Backend Setup
+# 🚀 Getting Started
 
-1. Navigate to the backend directory: `cd backend`
-2. Install dependencies: `npm install`
-3. Make sure MongoDB is running locally
-4. Start the backend server: `npm start` or `node server.js`
-5. The backend will be available at http://localhost:5000
+## Clone Repository
 
-### Frontend Setup
+```bash
+git clone https://github.com/Tilak2729/Url-Shortner.git
 
-1. Navigate to the frontend directory: `cd frontend`
-2. Install dependencies: `npm install`
-3. Start the frontend server: `npm start`
-4. The frontend will be available at http://localhost:3000 or the port specified by your local server
+cd Url-Shortner
+```
 
-### Testing the Application
+---
 
-1. Open your browser and navigate to the frontend URL
-2. Enter a long URL in the input field
-3. Select an expiry period
-4. Click the "Shorten" button
-5. You should see the shortened URL and QR code
+## Install Backend Dependencies
 
-### Prerequisites
+```bash
+cd backend
 
-- Node.js (v14 or higher)
-- MongoDB (local or Atlas)
+npm install
+```
 
-### Installation
+---
 
-1. Clone the repository:
-   ```
-   git clone https://github.com/yourusername/url-shortener.git
-   cd url-shortener
-   ```
+## Run Backend
 
-2. Install dependencies:
-   ```
-   npm install
-   ```
+```bash
+npm start
+```
 
-3. Create a `.env` file in the root directory with the following variables:
-   ```
-   MONGO_URI=mongodb://localhost:27017/url-shortener
-   BASE_URL=http://localhost:5000
-   PORT=5000
-   FRONTEND_URL=http://localhost:3000
-   ```
+---
 
-   **Note for cross-device access:** To make shortened URLs accessible from other devices on your local network, replace `localhost` in the `BASE_URL` with your computer's local IP address:
-   ```
-   BASE_URL=http://YOUR_LOCAL_IP:5000
-   ```
-   You can find your local IP address by running `ipconfig` (Windows) or `ifconfig` (Mac/Linux).
+## Run Frontend
 
-4. Start the server:
-   ```
-   npm start
-   ```
+Open the frontend directory and launch the application using Live Server or any static server.
 
-5. For development with auto-restart:
-   ```
-   backend:
-   npm run dev
-   ```
+---
 
-6. Access the application:
-   - Backend API: http://localhost:5000
-   - Frontend: Open `frontend/index.html` in your browser - npx serve -s -l 3000
+# 🔐 Environment Variables
 
-## API Endpoints
+Create a `.env` file inside the backend directory.
 
-- `POST /api/shorten`: Create a shortened URL
-  - Request body: `{ "longUrl": "https://example.com", "expiryDays": 7 }`
-  - Response: URL object with short URL and QR code
+```env
+MONGO_URI=your_mongodb_connection_string
 
-- `GET /api/urls`: Get all URLs
-  - Response: Array of URL objects
+BASE_URL=http://localhost:5000
 
-- `GET /:code`: Redirect to the original URL
+FRONTEND_URL=http://localhost:3000
 
-## License
+PORT=5000
+```
 
-MIT
+---
+
+# 📡 API Endpoints
+
+| Method | Endpoint | Description |
+|----------|-------------------|----------------------------|
+| POST | `/api/shorten` | Create Short URL |
+| GET | `/api/urls` | Fetch URL History |
+| DELETE | `/api/url/:id` | Delete URL |
+| GET | `/:code` | Redirect to Original URL |
+
+---
+
+# 📊 Core Functionalities
+
+### URL Shortening
+
+Creates compact, shareable links using NanoID.
+
+---
+
+### QR Code Generation
+
+Automatically generates QR Codes for every shortened URL and allows downloading.
+
+---
+
+### Click Tracking
+
+Tracks the number of visits made using each shortened URL.
+
+---
+
+### URL Expiration
+
+Supports configurable expiration periods to automatically invalidate links.
+
+---
+
+### History Management
+
+Displays previously shortened URLs with creation date and click statistics.
+
+---
+
+### Dark & Light Theme
+
+Allows users to switch between themes for an enhanced user experience.
+
+---
+
+# 🧠 Challenges Faced
+
+During development, several real-world deployment and backend challenges were solved, including:
+
+- Cross-Origin Resource Sharing (CORS) configuration
+- MongoDB Atlas integration
+- Environment variable management
+- Render backend deployment
+- Vercel frontend deployment
+- Production API configuration
+- URL redirection handling
+- QR Code generation
+- Responsive UI development
+
+---
+
+# 🔮 Future Improvements
+
+- 👤 User Authentication
+- ✏ Custom URL aliases
+- 📈 Advanced Analytics Dashboard
+- 🔒 Password Protected URLs
+- 📁 User-specific URL Management
+- 📊 Charts & Statistics
+- ⚡ Redis Caching
+- 🐳 Docker Support
+- 📱 Progressive Web App (PWA)
+- 🌍 Custom Domains
+
+---
+
+# 👨‍💻 Author
+
+**Tilak Bhandari**
+
+Electrical Engineering Undergraduate  
+Motilal Nehru National Institute of Technology Allahabad (MNNIT)
+
+GitHub: https://github.com/Tilak2729
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving it a ⭐ on GitHub.
+
+---
+
+<div align="center">
+
+### Built with ❤️ using Node.js, Express.js, MongoDB Atlas & JavaScript
+
+</div>
