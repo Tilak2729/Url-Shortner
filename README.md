@@ -328,6 +328,6 @@ If you found this project useful, consider giving it a ⭐ on GitHub.
 
 <div align="center">
 
-### Built with ❤️ using Node.js, Express.js, MongoDB Atlas & JavaScript
+### Built using Node.js, Express.js, MongoDB Atlas & JavaScript
 
 </div>
